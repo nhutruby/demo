@@ -32,3 +32,4 @@ group :development do
 end
 # database
 gem 'mongoid'
+gem 'foreman'
