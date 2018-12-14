@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+# rubocop
+default 53 offenses
+# install
+rails new demo --api --skip-active-record 
+rbenv install jruby-9.2.5.0

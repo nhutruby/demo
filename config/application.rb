@@ -4,8 +4,8 @@ require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
+#require "active_record/railtie"
+#require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
@@ -31,8 +31,20 @@ module Demo
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.orm :mongoid
+      g.test_framework :rspec, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.view_specs false
+      g.helper_specs false
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
     end
+
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.mongoid.logger = Logger.new($stdout, :warn)
   end
 end

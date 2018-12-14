@@ -44,4 +44,4 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 # install
 yarn add enzyme enzyme-adapter-react-16 react-test-renderer
-rbenv install jruby-9.2.5.0
+
