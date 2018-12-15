@@ -41,6 +41,7 @@ group :test do
   gem 'shoulda'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'database_cleaner'
 end
 group :doc do
   gem 'rdoc'
