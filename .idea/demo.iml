@@ -71,6 +71,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.6, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v1.1.0, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v5.2.2, rbenv: 2.6.0-rc1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-controller-testing (v1.0.4, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.0.3, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.0.4, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v5.2.2, rbenv: 2.6.0-rc1) [gem]" level="application" />
@@ -85,6 +86,9 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v3.8.1, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.8.0, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby_dep (v1.5.0, rbenv: 2.6.0-rc1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="shoulda (v3.6.0, rbenv: 2.6.0-rc1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="shoulda-context (v1.2.2, rbenv: 2.6.0-rc1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="shoulda-matchers (v3.1.2, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.2, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.1, rbenv: 2.6.0-rc1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.20.3, rbenv: 2.6.0-rc1) [gem]" level="application" />

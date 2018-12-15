@@ -38,6 +38,9 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 group :doc do
   gem 'rdoc'
