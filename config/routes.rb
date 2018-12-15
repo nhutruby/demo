@@ -1,11 +1,12 @@
-require 'api_constraints'
+require 'constraints/versions'
 
 Rails.application.routes.draw do
+  devise_for :users
   namespace :api,
             defaults: { format: :json },
             path: '/' do
     scope module: :v1,
-          constraints: ApiConstraints.new(version: 1, default: true) do
+          constraints: Versions.new(version: 1, default: true) do
     end
   end
 end

@@ -1,5 +1,5 @@
 # Api constraints for routes
-class ApiConstraints
+class Versions
   def initialize(options)
     @version = options[:version]
     @default = options[:default]

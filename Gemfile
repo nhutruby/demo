@@ -28,6 +28,7 @@ gem 'puma', '~> 3.11'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'foreman'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'devise'
 # database
 gem 'mongoid'
 group :development do
@@ -37,4 +38,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
+end
+group :doc do
+  gem 'rdoc'
 end
