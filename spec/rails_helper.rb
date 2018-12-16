@@ -51,6 +51,7 @@ RSpec.configure do |config|
     include_default_accept_headers
   end
   
+=begin
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end
@@ -58,6 +59,7 @@ RSpec.configure do |config|
   config.before(:each) do |example|
     DatabaseCleaner.clean
   end
+=end
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

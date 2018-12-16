@@ -36,4 +36,20 @@ class User
   # field :unlock_token,    type: String
   # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+  
+  field :auth_token, type: String
+  
+  ## Validates
+  validates :auth_token, uniqueness: true
+
+  ## Index
+  index({ auth_token: 1 }, { unique: true })
+
+  before_create :generate_authentication_token!
+
+  def generate_authentication_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while User.find_by(auth_token: self.auth_token)
+  end
 end
