@@ -35,6 +35,8 @@ group :development do
   gem 'listen'
   gem 'pry-rails'
   gem 'rubocop'
+  gem 'spring'
+  gem 'spring-watcher-listen'
 end
 group :test do
   gem 'database_cleaner'
@@ -44,6 +46,9 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'shoulda-matchers'
+end
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 group :doc do
   gem 'rdoc'
