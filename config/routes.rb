@@ -7,8 +7,8 @@ Rails.application.routes.draw do
             path: '/' do
     scope module: :v1,
           constraints: Versions.new(version: 1, default: true) do
-      resources :users, :only => [:show, :create, :update, :destroy]
-      resources :sessions, :only => [:create, :destroy]
+      resources :users, only: %i[show create update destroy]
+      resources :sessions, only: %i[create destroy]
     end
   end
 end

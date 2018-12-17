@@ -27,12 +27,10 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
-
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

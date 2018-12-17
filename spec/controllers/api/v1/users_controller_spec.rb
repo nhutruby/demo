@@ -1,106 +1,104 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
-
-  describe "GET #show" do
+  describe 'GET #show' do
     before(:each) do
       @user = create(:user)
-      get :show,  params: { id: @user.id, format: :json }
+      get :show, params: { id: @user.id, format: :json }
     end
-    
-    it "returns the information about a reporter on a hash" do
+
+    it 'returns the information about a reporter on a hash' do
       user_response = json_response
       expect(user_response[:email]).to eql @user.email
     end
-    
+
     it { should respond_with 200 }
   end
 
-  describe "POST #create" do
-    context "when is succesfully created" do
+  describe 'POST #create' do
+    context 'when is succesfully created' do
       before(:each) do
         @user_attributes = attributes_for(:user)
         # second argument to `post` must be a value to `params` hash to pass the tests
         post :create, params: { user: @user_attributes }
       end
-    
-      it "renders the json representation for the user record just created" do
+
+      it 'renders the json representation for the user record just created' do
         user_response = json_response
         expect(user_response[:email]).to eql @user_attributes[:email]
       end
-    
+
       it { should respond_with 201 }
     end
-  
-    context "when is not created" do
+
+    context 'when is not created' do
       before(:each) do
-        @invalid_user_attributes = {password: "12345678", password_confirmation: "12345678" }
+        @invalid_user_attributes = { password: '12345678', password_confirmation: '12345678' }
         # second argument to `post` must be a value to `params` hash to pass the tests
         post :create, params: { user: @invalid_user_attributes }
       end
-    
-      it "renders an errors json" do
+
+      it 'renders an errors json' do
         user_response = json_response
         expect(user_response).to have_key(:errors)
       end
-    
-      it "renders the json errors on why the user could not be created" do
+
+      it 'renders the json errors on why the user could not be created' do
         user_response = json_response
         expect(user_response[:errors][:email]).to include "can't be blank"
       end
-    
+
       it { should respond_with 422 }
     end
   end
 
-  describe "PUT/PATCH #update" do
+  describe 'PUT/PATCH #update' do
     before(:each) do
       @user = create(:user)
       api_authorization_header @user.auth_token
     end
-    context "when is successfully updated" do
+    context 'when is successfully updated' do
       before(:each) do
-        patch :update, params: { :id => @user.id,
-                                  user: { email: "newmail@example.com" } }
+        patch :update, params: { id: @user.id,
+                                 user: { email: 'newmail@example.com' } }
       end
-    
-      it "renders the json representation for the updated user" do
+
+      it 'renders the json representation for the updated user' do
         user_response = json_response
-        expect(user_response[:email]).to eql "newmail@example.com"
+        expect(user_response[:email]).to eql 'newmail@example.com'
       end
-    
+
       it { should respond_with 200 }
     end
-  
 
-    context "when is not created" do
+    context 'when is not created' do
       before(:each) do
-        patch :update, params: { :id => @user.id,
-                         user: {email: "bademail.com"}}
+        patch :update, params: { id: @user.id,
+                                 user: { email: 'bademail.com' } }
       end
-    
-      it "renders an errors json" do
+
+      it 'renders an errors json' do
         user_response = json_response
         expect(user_response).to have_key(:errors)
       end
-    
-      it "renders the json errors on whye the user could not be created" do
+
+      it 'renders the json errors on whye the user could not be created' do
         user_response = json_response
-        expect(user_response[:errors][:email]).to include "is invalid"
+        expect(user_response[:errors][:email]).to include 'is invalid'
       end
-    
+
       it { should respond_with 422 }
     end
-
   end
-  
-  describe "DELETE #destroy" do
+
+  describe 'DELETE #destroy' do
     before(:each) do
       @user = create(:user)
+      puts @user.email
+      puts 'bbbbbbbbbbbbddddddssssss'
       api_authorization_header @user.auth_token
       delete :destroy, params: { id: @user.id }
     end
     it { should respond_with 204 }
   end
-
 end

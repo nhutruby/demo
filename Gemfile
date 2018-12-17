@@ -26,22 +26,24 @@ gem 'puma', '~> 3.11'
 # gem 'rack-cors'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'devise'
 gem 'foreman'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'devise'
 # database
 gem 'mongoid'
 group :development do
   gem 'listen'
+  gem 'pry-rails'
+  gem 'rubocop'
 end
 group :test do
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'shoulda-matchers'
-  gem 'rails-controller-testing'
-  gem 'database_cleaner'
 end
 group :doc do
   gem 'rdoc'
