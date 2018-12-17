@@ -40,9 +40,9 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
   describe "DELETE #destroy" do
   
     before(:each) do
-      @user = create(:user)
-      sign_in @user
-      delete :destroy, params: {id: @user.auth_token}
+      @user = create :user
+      sign_in @user, store: false
+      delete :destroy, id: @user.auth_token
     end
   
     it { should respond_with 204 }

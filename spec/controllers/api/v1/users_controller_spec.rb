@@ -69,7 +69,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         expect(user_response[:email]).to eql "newmail@example.com"
       end
     
-      # it { should respond_with 200 }
+      it { should respond_with 200 }
     end
   
 
