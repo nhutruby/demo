@@ -48,7 +48,7 @@ group :test do
   gem 'shoulda-matchers'
 end
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %I[mri mingw x64_mingw]
 end
 group :doc do
   gem 'rdoc'

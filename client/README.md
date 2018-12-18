@@ -44,4 +44,12 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 # install
 yarn add enzyme enzyme-adapter-react-16 react-test-renderer
+npm install --save react-redux
+npm install --save-dev redux-devtools
+
+# build
+  39.55 KB  build/static/js/1.d852c8cc.chunk.js
+  794 B     build/static/js/main.08bc07ad.chunk.js
+  763 B     build/static/js/runtime~main.229c360f.js
+  511 B     build/static/css/main.7dbb2735.chunk.css
 

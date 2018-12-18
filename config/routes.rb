@@ -1,7 +1,7 @@
 require 'constraints/versions'
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, skip: %I[registrations]
   namespace :api,
             defaults: { format: :json },
             path: '/' do
