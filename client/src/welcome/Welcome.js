@@ -8,9 +8,10 @@ const styles = theme => ({
   root: {
     flexGrow: 1
   },
+
   paper: {
     padding: theme.spacing.unit * 1,
-    textAlign: "center",
+    textAlign: "right",
     color: theme.palette.text.secondary
   }
 });

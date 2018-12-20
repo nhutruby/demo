@@ -49,3 +49,6 @@ yarn add enzyme enzyme-adapter-react-16 react-test-renderer
 npm install --save react-redux
 npm install --save-dev redux-devtools
 npm install --save-dev renamer
+npm install demo-react-scripts
+npm install @material-ui/icons
+import files in marerial-ui must be in order.
