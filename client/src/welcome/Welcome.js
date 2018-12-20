@@ -1,8 +1,9 @@
 import React, {lazy} from "react";
 import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core/styles";
+import withStyles from "@material-ui/core/styles/withStyles";
 const Paper = lazy(() => import ("@material-ui/core/Paper"));
 const Grid = lazy(() => import ("@material-ui/core/Grid"));
+const Login = lazy(() => import ("../login/Login"));
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -20,7 +21,9 @@ const Welcome = props => {
   return (<div className={classes.root}>
     <Grid container={true} spacing={24}>
       <Grid item={true} xs={12}>
-        <Paper className={classes.paper}>xs=12</Paper>
+        <Paper className={classes.paper}>
+          <Login/>
+        </Paper>
       </Grid>
       <Grid item={true} xs={6}>
         <Paper className={classes.paper}>xs=6</Paper>

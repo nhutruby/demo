@@ -33,3 +33,13 @@
 235 B build/static/css/main.ea2fc369.chunk.css
 206 B (+1 B) build/static/js/1.6b61f339.chunk.js
 {withStyles} => new chunks 17.KB
+
+39.27 KB build/static/js/6.90ed9c15.chunk.js
+16.82 KB (-1.24 KB) build/static/js/5.5a1568b2.chunk.js
+1.67 KB build/static/js/4.7d98d3d4.chunk.js
+1.2 KB (+7 B) build/static/js/runtime~main.d2915fea.js
+828 B (+1 B) build/static/js/3.03812695.chunk.js
+764 B (-2 B) build/static/js/main.650f4ed0.chunk.js
+423 B (-1 B) build/static/js/2.957e6e1b.chunk.js
+235 B build/static/css/main.ea2fc369.chunk.css
+206 B (+2 B) build/static/js/1.6b61f339.chunk.js

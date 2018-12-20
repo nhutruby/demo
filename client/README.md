@@ -48,3 +48,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 yarn add enzyme enzyme-adapter-react-16 react-test-renderer
 npm install --save react-redux
 npm install --save-dev redux-devtools
+npm install --save-dev renamer
