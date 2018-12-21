@@ -68,3 +68,15 @@
 457 B (+1 B) build/static/js/2.83c470ff.chunk.js
 235 B build/static/css/main.b9fec664.chunk.css
 206 B (+1 B) build/static/js/1.c2d03548.chunk.js
+
+39.29 KB build/static/js/8.6d66f642.chunk.js
+31.45 KB (+877 B) build/static/js/6.c39aec1a.chunk.js
+16.96 KB (-16 B) build/static/js/7.0c032e8a.chunk.js
+1.66 KB (+1 B) build/static/js/4.60e8a280.chunk.js
+1.21 KB (-6 B) build/static/js/runtime~main.bc0a802e.js
+947 B (+99 B) build/static/js/5.0f34039e.chunk.js
+820 B (-1 B) build/static/js/3.d731300c.chunk.js
+767 B (+1 B) build/static/js/main.602d825c.chunk.js
+459 B (+2 B) build/static/js/2.0c0c5982.chunk.js
+235 B build/static/css/main.b9fec664.chunk.css
+204 B (-2 B) build/static/js/1.0100d4d0.chunk.js
