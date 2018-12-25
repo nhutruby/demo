@@ -5,10 +5,14 @@ import {injectReducer, removeReducer} from "./utils";
 const InjectReducer = reducer => WrappedComponent => {
   class InjectReducer extends React.Component {
     componentWillMount() {
-      injectReducer(this.context.store, reducer);
+      console.log("reducer");
+      console.log(reducer);
+      console.log(this.context);
+      console.log(this.props);
+      injectReducer(this.props.store, reducer);
     }
     componentWillUnmount() {
-      removeReducer(this.context.store, reducer);
+      removeReducer(this.props.store, reducer);
     }
     render() {
       return React.createElement(WrappedComponent, this.props);

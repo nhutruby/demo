@@ -6,6 +6,9 @@ export function injectReducer(store, reducer) {
     reducerCounters[key] = (reducerCounters[key] || 0) + 1;
     asyncReducers[key] = reducer[key];
   });
+  console.log("mm");
+  console.log(asyncReducers);
+  console.log("mm2");
   store.replaceReducer(asyncReducers);
 }
 

@@ -1,6 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {logIn} from "./LogInAction";
+import LogInReducer from "./LogInReducer";
+import InjectReducer from "../common/js/reducer";
 import withStyles from "@material-ui/core/styles/withStyles";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -34,7 +38,7 @@ const styles = theme => ({
     backgroundColor: "red"
   }
 });
-class Login extends React.Component {
+class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,6 +107,8 @@ class Login extends React.Component {
   };
   render() {
     console.log("render");
+    console.log(this.pros);
+    console.log(this.context);
     const {classes} = this.props;
     return (<div className={classes.root}>
       <form noValidate={true} ref={form => (this.formEl = form)} className={classes.container} onSubmit={this.handleSubmit}>
@@ -145,8 +151,21 @@ class Login extends React.Component {
     </div>);
   }
 }
-Login.propTypes = {
+LogIn.propTypes = {
   classes: PropTypes.object.isRequired
 };
+LogIn.contextTypes = {
+  store: PropTypes.object
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    logIn: (email, password) => dispatch(logIn(email, password))
+  };
+};
 
-export default withStyles(styles)(Login);
+function mapStateToProps(state) {
+  return {score: state};
+}
+const LogInContainer = connect(mapStateToProps, mapDispatchToProps)(LogIn);
+//export default withStyles(styles)(LogInContainer);
+export default withStyles(styles)(InjectReducer({logIn: LogInReducer})(LogInContainer));

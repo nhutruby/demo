@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.7.0",
     "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
     "demo-react-scripts": "^2.1.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
@@ -13,7 +14,8 @@
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
     "react-test-renderer": "^16.6.3",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2"
   },
   "scripts": {
     "start": "react-scripts start",

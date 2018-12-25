@@ -1,27 +1,27 @@
-const loginReducer = (state, action) => {
+const LogInReducer = (state, action) => {
   if (state === undefined) 
     return {
       user: {
         first_name: "",
         surname: ""
       },
-      user_signed_in: false
+      user_logged_in: false
     };
   
   switch (action.type) {
-    case "SIGN_IN":
+    case "LOG_IN":
       return {
         ...state
       };
-    case "SIGN_IN_FAIL":
+    case "LOG_IN_FAIL":
       return {
         ...state,
         error: action.error
       };
-    case "SIGN_IN_SUCCESS":
+    case "LOG_IN_SUCCESS":
       return {
         ...state,
-        user_signed_in: true,
+        user_logged_in: true,
         user: {
           ...state.user,
           access_token: action.access_token,
@@ -33,4 +33,4 @@ const loginReducer = (state, action) => {
       return state;
   }
 };
-export default loginReducer;
+export default LogInReducer;

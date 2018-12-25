@@ -3,12 +3,13 @@ import {render} from "react-dom";
 import {Provider} from "react-redux";
 import "./index.css";
 import App from "./app/App";
-import {createStore} from "redux";
+import {createStore, combineReducers} from "redux";
 import * as serviceWorker from "./serviceWorker";
-
-const store = createStore(() => {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+import LogInReducer from "./login/LogInReducer";
+const rootReducer = combineReducers({LogInReducer});
+let store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 render(<Provider store={store}>
-  <App/>
+  <App store={store}/>
 </Provider>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change

@@ -1,9 +1,9 @@
-export const signIn = () => {
-  return {type: "SIGN_IN"};
+export const logIn = authParams => {
+  return {type: "SIGN_IN", payload: authParams};
 };
-export const signInSuccess = (accessToken, firstName, lastName) => {
+export const logInSuccess = (accessToken, firstName, lastName) => {
   return {type: "SIGN_IN_SUCCESS", access_token: accessToken, first_name: firstName, last_name: lastName};
 };
-export const signInFail = error => {
+export const logInFail = error => {
   return {type: "SIGN_IN_FAIL", error: error};
 };
