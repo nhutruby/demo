@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
 const Grid = lazy(() => import ("@material-ui/core/Grid"));
-const Login = lazy(() => import ("../login/Login"));
+const Login = lazy(() => import ("../login/LogIn"));
 const styles = theme => ({
   root: {
     flexGrow: 1

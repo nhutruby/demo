@@ -27,7 +27,11 @@ const styles = theme => ({
     flexBasis: 200
   },
   typography: {
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2,
+    color: "white"
+  },
+  popper: {
+    backgroundColor: "red"
   }
 });
 class Login extends React.Component {
@@ -42,7 +46,7 @@ class Login extends React.Component {
       anchorEl: null,
       open: false,
       id: null,
-      popperContent: ""
+      popperContent: []
     };
     this.validate = this.validate.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -52,22 +56,19 @@ class Login extends React.Component {
   validate = () => {
     const formEl = this.formEl;
     const formLength = formEl.length;
-    this.setState(state => ({popperContent: "", id: null, open: false}));
+    this.setState(state => ({popperContent: [], id: null, open: false}));
     if (formEl.checkValidity() === false) {
       this.setState(state => ({id: "login_popper", open: true}));
       for (let i = 0; i < formLength; i++) {
         const elem = formEl[i];
         if (elem.nodeName.toLowerCase() !== "button") {
           if (!elem.validity.valid) {
-            console.log(elem.validationMessage);
-            console.log(elem.name);
-            console.log(elem.pattern);
             if (!(elem.name === "password")) {
               this.setState(state => ({
-                popperContent: state.popperContent.concat("<p>" + elem.name.charAt(0).toUpperCase() + elem.name.slice(1) + " :" + elem.validationMessage + "</p>")
+                popperContent: state.popperContent.concat(elem.name.charAt(0).toUpperCase() + elem.name.slice(1) + " :" + elem.validationMessage)
               }));
             } else {
-              this.setState(state => ({popperContent: state.popperContent.concat("<p> Password: Must be at least 6 characters long, contain letters and numbers </p>")}));
+              this.setState(state => ({popperContent: state.popperContent.concat("Password: Must be at least 6 characters long, contain letters and numbers")}));
             }
           }
         }
@@ -101,12 +102,12 @@ class Login extends React.Component {
     }));
   };
   render() {
+    console.log("render");
     const {classes} = this.props;
-    const props = this.props;
     return (<div className={classes.root}>
-      <form {...props} noValidate={true} ref={form => (this.formEl = form)} className={classes.container} onSubmit={this.handleSubmit}>
+      <form noValidate={true} ref={form => (this.formEl = form)} className={classes.container} onSubmit={this.handleSubmit}>
         <TextField id="outlined-email-input" label="Email" className={classNames(classes.textField, classes.margin)} required={true} type="email" value={this.state.email} name="email" autoComplete="email" variant="outlined" onChange={this.handleChange("email")}/>
-        <TextField id="password" className={classNames(classes.margin, classes.textField)} required={true} value={this.state.password} name="password" variant="outlined" type={this.state.showPassword
+        <TextField id="password" className={classNames(classes.margin, classes.textField)} required={true} value={this.state.password} name="password" autoComplete="password" variant="outlined" type={this.state.showPassword
             ? "text"
             : "password"} label="Password" onChange={this.handleChange("password")} InputProps={{
             endAdornment: (<InputAdornment position="end">
@@ -131,13 +132,13 @@ class Login extends React.Component {
             Login
           </Button>
           <Popper id={this.state.id} open={this.state.open} anchorEl={this.state.anchorEl} placement="bottom">
-            <Paper>
-              <Typography className={classes.typography}>
-                <span dangerouslySetInnerHTML={{
-                    __html: this.state.popperContent
-                  }}/>
-              </Typography>
-            </Paper>
+            {
+              this.state.popperContent.map((content, index) => (<Paper className={classNames(classes.popper)} key={index}>
+                <Typography className={classes.typography}>
+                  {content}
+                </Typography>
+              </Paper>))
+            }
           </Popper>
         </div>
       </form>
