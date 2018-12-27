@@ -4,13 +4,11 @@
     <list default="true" id="1afab621-30c8-42fc-9992-84e248bb3164" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/common/reducer/Manager.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/common/reducer/Manager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/login/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/login/LogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/controllers/api/v1/sessions_controller_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/controllers/api/v1/sessions_controller_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/controllers/api/v1/users_controller_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/controllers/api/v1/users_controller_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/examples.txt" beforeDir="false" afterPath="$PROJECT_DIR$/spec/examples.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/models/user_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/user_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/login/LogInReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/login/LogInReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/login/LogInSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/login/LogInSaga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/welcome/Welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/welcome/Welcome.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -47,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="9">
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -75,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+              <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -111,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="177">
-              <caret line="45" column="58" lean-forward="true" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
+              <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -752,7 +750,7 @@
       <workItem from="1545020935572" duration="9434000" />
       <workItem from="1545034532166" duration="5329000" />
       <workItem from="1545879247331" duration="14741000" />
-      <workItem from="1545894952459" duration="10748000" />
+      <workItem from="1545894952459" duration="13085000" />
     </task>
     <servers />
   </component>
@@ -765,7 +763,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147543000" />
+    <option name="totallyTimeSpent" value="149880000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -778,7 +776,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4954955" visible="true" weight="0.38148445" />
       <window_info id="Structure" order="1" sideWeight="0.5045045" side_tool="true" weight="0.33280128" />
@@ -1105,21 +1102,21 @@
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
-          <caret line="45" column="58" lean-forward="true" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
+          <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="9">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
         </state>
       </provider>
     </entry>

@@ -3,8 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {logIn} from "./LogInAction";
-import LoginSaga from "./LogInSaga";
-import LogInReducer from "./LogInReducer";
+
 import withStyles from "@material-ui/core/styles/withStyles";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -16,7 +15,6 @@ import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import {StoreContext} from "../common/context/Store";
-import sagaMiddleware from "../common/saga";
 
 const styles = theme => ({
   root: {
@@ -60,17 +58,7 @@ class CLogIn extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickShowPassword = this.handleClickShowPassword;
   }
-  componentWillMount() {
-    this.context.reducerManager.add("logIn", LogInReducer);
-    //const {sagaMiddleware} = this.context;
-    sagaMiddleware.run(LoginSaga, this.context);
-    //this.saga = runSaga(LoginSaga());
-  }
-  componentWillUnmount() {
-    if (this.saga) {
-      this.saga.cancel();
-    }
-  }
+
   validate = () => {
     const formEl = this.formEl;
     const formLength = formEl.length;
@@ -103,7 +91,6 @@ class CLogIn extends React.Component {
     this.setState(state => ({anchorEl: currentTarget}));
     if (this.validate()) {
       this.props.logIn({email: this.state.email, password: this.state.password});
-      console.log('a')
     }
   };
   handleChange = prop => event => {
@@ -169,9 +156,8 @@ const mapDispatchToProps = dispatch => {
     logIn: (email, password) => dispatch(logIn(email, password))
   };
 };
-
-function mapStateToProps(state) {
-  return state;
-}
+const mapStateToProps = state => {
+  return {loggedIn: state.LogInReducer.user_logged_in};
+};
 const LogIn = connect(mapStateToProps, mapDispatchToProps)(CLogIn);
 export default withStyles(styles)(LogIn);

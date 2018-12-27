@@ -14,7 +14,8 @@ module Api
           render json: user.serializable_hash(only: %I[auth_token first_name surname]),
                  status: 200, location: [:api, user]
         else
-          render json: { errors: 'Invalid email or password' }, status: 422
+          puts user.email
+          render json: { error: 'Invalid email or password' }, status: 422
         end
       end
 

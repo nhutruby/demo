@@ -14,7 +14,8 @@ function* workerLogIn() {
       const user = response.data;
       yield put({type: "LOG_IN_SUCCESS", user});
     } catch (error) {
-      yield put({type: "LOG_IN_FAIL", error});
+      const message = error.response.data.error;
+      yield put({type: "LOG_IN_FAIL", message});
     }
   }
 }

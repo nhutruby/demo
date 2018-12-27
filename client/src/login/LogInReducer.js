@@ -15,18 +15,20 @@ const LogInReducer = (state, action) => {
       };
     case "LOG_IN_FAIL":
       return {
-        ...state,
-        error: action.error
+        user: {
+          first_name: "",
+          surname: ""
+        },
+        user_logged_in: false,
+        error: action.message
       };
     case "LOG_IN_SUCCESS":
       return {
-        ...state,
         user_logged_in: true,
         user: {
-          ...state.user,
-          access_token: action.access_token,
-          first_name: action.first_name,
-          surname: action.surname
+          access_token: action.user.auth_token,
+          first_name: action.user.first_name,
+          surname: action.user.surname
         }
       };
     default:
