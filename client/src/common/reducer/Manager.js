@@ -1,10 +1,13 @@
-import {combineReducers, createStore} from 'redux';
-export function createReducerManager (initialReducers) {
+import {combineReducers, compose, createStore, applyMiddleware} from "redux";
+import sagaMiddleware from "../saga";
+export function createReducerManager(initialReducers) {
   // Create an object which maps keys to reducers
-  const reducers = {...initialReducers};
+  const reducers = {
+    ...initialReducers
+  };
 
   // Create the initial combinedReducer
-  let combinedReducer = combineReducers (reducers);
+  let combinedReducer = combineReducers(reducers);
 
   // An array which is used to delete state keys when reducers are removed
   let keysToRemove = [];
@@ -17,7 +20,9 @@ export function createReducerManager (initialReducers) {
     reduce: (state, action) => {
       // If any reducers have been removed, clean up their state first
       if (keysToRemove.length > 0) {
-        state = {...state};
+        state = {
+          ...state
+        };
         for (let key of keysToRemove) {
           delete state[key];
         }
@@ -25,7 +30,7 @@ export function createReducerManager (initialReducers) {
       }
 
       // Delegate to the combined reducer
-      return combinedReducer (state, action);
+      return combinedReducer(state, action);
     },
 
     // Adds a new reducer with the specified key
@@ -38,7 +43,7 @@ export function createReducerManager (initialReducers) {
       reducers[key] = reducer;
 
       // Generate a new combined reducer
-      combinedReducer = combineReducers (reducers);
+      combinedReducer = combineReducers(reducers);
     },
 
     // Removes a reducer with the specified key
@@ -51,24 +56,24 @@ export function createReducerManager (initialReducers) {
       delete reducers[key];
 
       // Add the key to the list of keys to clean up
-      keysToRemove.push (key);
+      keysToRemove.push(key);
 
       // Generate a new combined reducer
-      combinedReducer = combineReducers (reducers);
-    },
+      combinedReducer = combineReducers(reducers);
+    }
   };
 }
 const defaultReducers = () => {
   return null;
 };
 const staticReducers = {
-  defaultReducers,
+  defaultReducers
 };
-export default function configureStore (initialState) {
-  const reducerManager = createReducerManager (staticReducers);
-
+export default function configureStore() {
+  const reducerManager = createReducerManager(staticReducers);
   // Create a store with the root reducer function being the one exposed by the manager.
-  const store = createStore (reducerManager.reduce, initialState);
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(reducerManager.reduce, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
   // Optional: Put the reducer manager on the store so it is easily accessible
   store.reducerManager = reducerManager;

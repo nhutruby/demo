@@ -10,7 +10,7 @@ module Api
           sign_in user, store: false
           user.generate_authentication_token!
           user.save
-          render json: user, status: 200, location: [:api, user]
+          render json: user.serializable_hash(only: %I[auth_token first_name surname]), status: 200, location: [:api, user]
         else
           render json: { errors: 'Invalid email or password' }, status: 422
         end

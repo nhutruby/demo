@@ -3,8 +3,8 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {logIn} from "./LogInAction";
+import LoginSaga from "./LogInSaga";
 import LogInReducer from "./LogInReducer";
-import InjectReducer from "../common/js/reducer";
 import withStyles from "@material-ui/core/styles/withStyles";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -15,6 +15,9 @@ import Button from "@material-ui/core/Button";
 import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import {StoreContext} from "../common/context/Store";
+import sagaMiddleware from "../common/saga";
+
 const styles = theme => ({
   root: {
     flexWrap: "wrap",
@@ -38,7 +41,7 @@ const styles = theme => ({
     backgroundColor: "red"
   }
 });
-class LogIn extends React.Component {
+class CLogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,6 +59,17 @@ class LogIn extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickShowPassword = this.handleClickShowPassword;
+  }
+  componentWillMount() {
+    this.context.reducerManager.add("logIn", LogInReducer);
+    //const {sagaMiddleware} = this.context;
+    sagaMiddleware.run(LoginSaga, this.context);
+    //this.saga = runSaga(LoginSaga());
+  }
+  componentWillUnmount() {
+    if (this.saga) {
+      this.saga.cancel();
+    }
   }
   validate = () => {
     const formEl = this.formEl;
@@ -87,12 +101,11 @@ class LogIn extends React.Component {
     event.preventDefault();
     const {currentTarget} = event;
     this.setState(state => ({anchorEl: currentTarget}));
-    if (this.validate()) {
-      console.log("success");
+      if (this.validate()) {
+      this.props.logIn({email: this.state.email, password: this.state.password});
     }
   };
   handleChange = prop => event => {
-    console.log("change");
     event.preventDefault();
     this.setState({[prop]: event.target.value});
     const {currentTarget} = event;
@@ -106,9 +119,6 @@ class LogIn extends React.Component {
     }));
   };
   render() {
-    console.log("render");
-    console.log(this.pros);
-    console.log(this.context);
     const {classes} = this.props;
     return (<div className={classes.root}>
       <form noValidate={true} ref={form => (this.formEl = form)} className={classes.container} onSubmit={this.handleSubmit}>
@@ -130,7 +140,6 @@ class LogIn extends React.Component {
           }} inputProps={{
             pattern: "(?=.*[0-9])(?=.*[a-z]).{6,}"
           }}>
-          <div className="invalid-feedback">aaaaa</div>>
         </TextField>
 
         <div>
@@ -151,12 +160,10 @@ class LogIn extends React.Component {
     </div>);
   }
 }
-LogIn.propTypes = {
+CLogIn.propTypes = {
   classes: PropTypes.object.isRequired
 };
-LogIn.contextTypes = {
-  store: PropTypes.object
-};
+CLogIn.contextType = StoreContext;
 const mapDispatchToProps = dispatch => {
   return {
     logIn: (email, password) => dispatch(logIn(email, password))
@@ -164,8 +171,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 function mapStateToProps(state) {
-  return {score: state};
+  return state;
 }
-const LogInContainer = connect(mapStateToProps, mapDispatchToProps)(LogIn);
-//export default withStyles(styles)(LogInContainer);
-export default withStyles(styles)(InjectReducer({logIn: LogInReducer})(LogInContainer));
+const LogIn = connect(mapStateToProps, mapDispatchToProps)(CLogIn);
+export default withStyles(styles)(LogIn);

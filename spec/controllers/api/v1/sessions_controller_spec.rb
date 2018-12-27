@@ -7,15 +7,17 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
     end
     context 'when the credentials are correct' do
       before(:each) do
-        credentials = { email: @user.email, password: '12345678' }
+        credentials = { email: @user.email, password: '1234567a' }
         post :create, params: { session: credentials }
       end
       it 'returns the user record corresponding to the given credentials' do
         @user.reload
-        expect(json_response[:auth_token]).to eql @user.auth_token
+        expect(json_response[:first_name]).to eql @user.first_name
+        expect(json_response[:surname]).to eql @user.surname
       end
       it { should respond_with 200 }
     end
+
     context 'when the credentials are incorrect' do
       before(:each) do
         credentials = { email: @user.email, password: 'invalidpassword' }
@@ -26,7 +28,9 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       end
       it { should respond_with 422 }
     end
+
   end
+
   describe 'DELETE #destroy' do
     before(:each) do
       @user = create :user
@@ -35,4 +39,5 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
     end
     it { should respond_with 204 }
   end
+
 end

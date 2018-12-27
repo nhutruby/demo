@@ -19,8 +19,6 @@ const styles = theme => ({
 
 const Welcome = props => {
   const {classes, store} = props;
-  console.log("welcom");
-  console.log(store);
   return (<div className={classes.root}>
     <Grid container={true} spacing={24}>
       <Grid item={true} xs={12}>

@@ -1,24 +1,28 @@
 import React, {Suspense, lazy} from "react";
 import {connect} from "react-redux";
+import {StoreContext} from "../common/context/Store";
 const Home = lazy(() => import ("../home/Home"));
 const Welcome = lazy(() => import ("../welcome/Welcome"));
-const App = ({store, userSignedIn}) => {
-  console.log("a");
-  console.log(store);
-  return (<div>
-    <Suspense fallback={<div />}>
-      {
-        userSignedIn
-          ? <Home/>
-          : <Welcome store={store}/>
-      }
-    </Suspense>
-  </div>);
-};
+class CApp extends React.Component {
+  render() {
+    const {userSignedIn} = this.props;
+    return (<div>
+      <Suspense fallback={<div />}>
+        {
+          userSignedIn
+            ? <Home/>
+            : <Welcome/>
+        }
+      </Suspense>
+    </div>);
+  }
+}
+
 const mapStateToProps = state => {
-  return {userSignedIn: state.LogInReducer.user_logged_in};
+  return {userSignedIn: false};
 };
+CApp.contextType = StoreContext;
 
-const AppContainer = connect(mapStateToProps, {})(App);
+const App = connect(mapStateToProps, {})(CApp);
 
-export default AppContainer;
+export default App;
