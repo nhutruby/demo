@@ -101,8 +101,9 @@ class CLogIn extends React.Component {
     event.preventDefault();
     const {currentTarget} = event;
     this.setState(state => ({anchorEl: currentTarget}));
-      if (this.validate()) {
+    if (this.validate()) {
       this.props.logIn({email: this.state.email, password: this.state.password});
+      console.log('a')
     }
   };
   handleChange = prop => event => {
@@ -139,8 +140,7 @@ class CLogIn extends React.Component {
             // eslint-disable-next-line react/jsx-no-duplicate-props
           }} inputProps={{
             pattern: "(?=.*[0-9])(?=.*[a-z]).{6,}"
-          }}>
-        </TextField>
+          }}/>
 
         <div>
           <Button variant="contained" aria-describedby={this.state.id} className={classNames(classes.margin, classes.button)} color="primary" type="submit">

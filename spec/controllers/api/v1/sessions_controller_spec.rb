@@ -28,7 +28,6 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       end
       it { should respond_with 422 }
     end
-
   end
 
   describe 'DELETE #destroy' do
@@ -39,5 +38,4 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
     end
     it { should respond_with 204 }
   end
-
 end

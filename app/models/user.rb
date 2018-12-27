@@ -12,7 +12,7 @@ class User
   field :encrypted_password, type: String, default: ''
   field :first_name, type: String
   field :surname, type: String
-  field :auth_token, type: String, default:''
+  field :auth_token, type: String, default: ''
   ## Recoverable
   field :reset_password_token,   type: String
   field :reset_password_sent_at, type: Time
@@ -40,10 +40,11 @@ class User
   # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
-  
   ## Validates
   validates :auth_token, uniqueness: true
-  validates :password, length: {minimum: 6}, format: {with: /(?=.*[0-9])(?=.*[a-z]).{6,}/}, on: :create
+  validates :password, length: { minimum: 6 },
+                       format: { with: /(?=.*[0-9])(?=.*[a-z]).{6,}/ },
+                       on: :create
   validates :first_name, presence: true
   validates :surname, presence: true
   ## Index

@@ -9,12 +9,12 @@ RSpec.describe User, type: :model do
   it { should respond_to(:auth_token) }
   it { should respond_to(:first_name) }
   it { should respond_to(:surname) }
-  
+
   it { should be_valid }
   it { should validate_presence_of(:email) }
-  it { should validate_length_of(:password).is_at_least(6)}
+  it { should validate_length_of(:password).is_at_least(6) }
   it { should allow_value('1234567a').for(:password) }
-  it { should_not allow_value("foo").for(:password) }
+  it { should_not allow_value('foo').for(:password) }
   # FIX: bug of rspec
   # it { should validate_uniqueness_of(:email) }
   # it { should validate_uniqueness_of(:auth_token)}

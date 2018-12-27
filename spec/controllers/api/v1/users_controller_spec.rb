@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
-=begin
   describe 'GET #show' do
     before(:each) do
       @user = create(:user)
@@ -52,7 +51,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it { should respond_with 422 }
     end
   end
-=end
 
   describe 'PUT/PATCH #update' do
     before(:each) do
@@ -73,7 +71,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it { should respond_with 200 }
     end
 
-=begin
     context 'when is not created' do
       before(:each) do
         patch :update, params: { id: @user.id,
@@ -92,10 +89,8 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
       it { should respond_with 422 }
     end
-=end
   end
 
-=begin
   describe 'DELETE #destroy' do
     before(:each) do
       @user = create(:user)
@@ -104,5 +99,4 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
     it { should respond_with 204 }
   end
-=end
 end
