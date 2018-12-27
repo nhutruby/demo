@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1afab621-30c8-42fc-9992-84e248bb3164" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/login/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/login/LogIn.js" afterDir="false" />
-    </list>
+    <list default="true" id="1afab621-30c8-42fc-9992-84e248bb3164" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/log/" />
@@ -744,7 +742,7 @@
       <workItem from="1545020935572" duration="9434000" />
       <workItem from="1545034532166" duration="5329000" />
       <workItem from="1545879247331" duration="14741000" />
-      <workItem from="1545894952459" duration="13700000" />
+      <workItem from="1545894952459" duration="13709000" />
     </task>
     <servers />
   </component>
@@ -757,7 +755,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150495000" />
+    <option name="totallyTimeSpent" value="150504000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
