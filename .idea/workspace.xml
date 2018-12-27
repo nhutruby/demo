@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1afab621-30c8-42fc-9992-84e248bb3164" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/common/reducer/Manager.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/common/reducer/Manager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/login/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/login/LogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/login/LogInReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/login/LogInReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/login/LogInSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/login/LogInSaga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/welcome/Welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/welcome/Welcome.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -45,7 +39,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
+            <state relative-caret-position="240">
               <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
             </state>
           </provider>
@@ -750,7 +744,7 @@
       <workItem from="1545020935572" duration="9434000" />
       <workItem from="1545034532166" duration="5329000" />
       <workItem from="1545879247331" duration="14741000" />
-      <workItem from="1545894952459" duration="13085000" />
+      <workItem from="1545894952459" duration="13700000" />
     </task>
     <servers />
   </component>
@@ -763,7 +757,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149880000" />
+    <option name="totallyTimeSpent" value="150495000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1115,7 +1109,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
+        <state relative-caret-position="240">
           <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
         </state>
       </provider>

@@ -58,7 +58,6 @@ class CLogIn extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickShowPassword = this.handleClickShowPassword;
   }
-
   validate = () => {
     const formEl = this.formEl;
     const formLength = formEl.length;
@@ -96,9 +95,9 @@ class CLogIn extends React.Component {
   handleChange = prop => event => {
     event.preventDefault();
     this.setState({[prop]: event.target.value});
-    const {currentTarget} = event;
-    this.setState(state => ({anchorEl: currentTarget}));
-    this.validate();
+    //const {currentTarget} = event;
+    //this.setState(state => ({anchorEl: currentTarget}));
+    //this.validate();
   };
 
   handleClickShowPassword = () => {
@@ -106,8 +105,17 @@ class CLogIn extends React.Component {
       showPassword: !state.showPassword
     }));
   };
+
   render() {
-    const {classes} = this.props;
+    const {classes, error} = this.props;
+    const {anchorEl} = this.state;
+    let open = error
+      ? true
+      : this.state.open;
+    const id = open
+      ? "login-popper"
+      : null;
+    console.log(error);
     return (<div className={classes.root}>
       <form noValidate={true} ref={form => (this.formEl = form)} className={classes.container} onSubmit={this.handleSubmit}>
         <TextField id="outlined-email-input" label="Email" className={classNames(classes.textField, classes.margin)} required={true} type="email" value={this.state.email} name="email" autoComplete="email" variant="outlined" onChange={this.handleChange("email")}/>
@@ -130,16 +138,22 @@ class CLogIn extends React.Component {
           }}/>
 
         <div>
-          <Button variant="contained" aria-describedby={this.state.id} className={classNames(classes.margin, classes.button)} color="primary" type="submit">
+          <Button variant="contained" aria-describedby={id} className={classNames(classes.margin, classes.button)} color="primary" type="submit">
             Login
           </Button>
-          <Popper id={this.state.id} open={this.state.open} anchorEl={this.state.anchorEl} placement="bottom">
+          <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom">
             {
-              this.state.popperContent.map((content, index) => (<Paper className={classNames(classes.popper)} key={index}>
-                <Typography className={classes.typography}>
-                  {content}
-                </Typography>
-              </Paper>))
+              error && this.state.popperContent.length === 0
+                ? (<Paper className={classNames(classes.popper)}>
+                  <Typography className={classes.typography}>
+                    {error}
+                  </Typography>
+                </Paper>)
+                : (this.state.popperContent.map((content, index) => (<Paper className={classNames(classes.popper)} key={index}>
+                  <Typography className={classes.typography}>
+                    {content}
+                  </Typography>
+                </Paper>)))
             }
           </Popper>
         </div>
@@ -157,7 +171,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const mapStateToProps = state => {
-  return {loggedIn: state.LogInReducer.user_logged_in};
+  return {loggedIn: state.LogInReducer.user_logged_in, error: state.LogInReducer.error};
 };
 const LogIn = connect(mapStateToProps, mapDispatchToProps)(CLogIn);
 export default withStyles(styles)(LogIn);
