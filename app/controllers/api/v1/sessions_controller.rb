@@ -20,6 +20,7 @@ module Api
 
       # rubocop:enable Metrics/AbcSize
       def destroy
+        puts 'fuckyou'
         user = User.find_by(auth_token: params[:id])
         user.generate_authentication_token!
         user.save

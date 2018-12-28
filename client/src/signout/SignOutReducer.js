@@ -1,29 +1,28 @@
-const AuthReducer = (state, action) => {
+const SignOutReducer = (state, action) => {
   if (state === undefined) 
     return {
       user: {
         first_name: "",
         surname: ""
       },
-      authorization: false
+      sign_out: false
     };
   
   switch (action.type) {
-    case "AUTH":
+    case "SIGN_OUT":
       return {
         ...state
       };
-    case "AUTH_FAIL":
+    case "SIGN_OUT_FAIL":
       return {
         ...state,
-        authorization: false,
+        sign_out: false,
         error: action.message
       };
-    case "AUTH_SUCCESS":
+    case "SIGN_OUT_SUCCESS":
       return {
-        authorization: true,
+        sign_out: true,
         user: {
-          auth_token: action.user.auth_token,
           first_name: action.user.first_name,
           surname: action.user.surname
         }
@@ -32,4 +31,4 @@ const AuthReducer = (state, action) => {
       return state;
   }
 };
-export default AuthReducer;
+export default SignOutReducer;

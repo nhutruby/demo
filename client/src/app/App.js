@@ -18,12 +18,13 @@ class CApp extends React.Component {
   }
   render() {
     console.log("CApp");
-    const {auth} = this.props;
+    const {authorization} = this.props;
+    console.log(authorization);
     return (<div>
       <Router>
         <Suspense fallback={<div />}>
           {
-            auth
+            authorization
               ? <Home/>
               : <Welcome/>
           }
@@ -34,7 +35,7 @@ class CApp extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {auth: state.AuthReducer.auth};
+  return {authorization: state.AuthReducer.authorization};
 };
 const mapDispatchToProps = dispatch => {
   return {
