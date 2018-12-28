@@ -24,7 +24,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
         post :create, params: { session: credentials }
       end
       it 'returns a json with an error' do
-        expect(json_response[:errors]).to eql 'Invalid email or password'
+        expect(json_response[:error]).to eql 'Invalid email or password'
       end
       it { should respond_with 422 }
     end

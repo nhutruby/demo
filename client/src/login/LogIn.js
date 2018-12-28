@@ -1,9 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import cookie from "cookie";
 import {connect} from "react-redux";
 import {logIn} from "./LogInAction";
-
 import withStyles from "@material-ui/core/styles/withStyles";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -15,7 +15,6 @@ import Popper from "@material-ui/core/Popper";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import {StoreContext} from "../common/context/Store";
-
 const styles = theme => ({
   root: {
     flexWrap: "wrap",
@@ -95,9 +94,6 @@ class CLogIn extends React.Component {
   handleChange = prop => event => {
     event.preventDefault();
     this.setState({[prop]: event.target.value});
-    //const {currentTarget} = event;
-    //this.setState(state => ({anchorEl: currentTarget}));
-    //this.validate();
   };
 
   handleClickShowPassword = () => {
@@ -107,6 +103,13 @@ class CLogIn extends React.Component {
   };
 
   render() {
+    if (this.props.loggedIn && this.props.auth_token) {
+      console.log(this.props.auth_token);
+      if (typeof document !== "undefined") {
+        document.cookie = cookie.serialize("auth_token", this.props.auth_token);
+      }
+      window.location.reload();
+    }
     const {classes, error} = this.props;
     const {anchorEl} = this.state;
     let open = error
@@ -141,7 +144,7 @@ class CLogIn extends React.Component {
           <Button variant="contained" aria-describedby={id} className={classNames(classes.margin, classes.button)} color="primary" type="submit">
             Login
           </Button>
-          <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom">
+          <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start">
             {
               error && this.state.popperContent.length === 0
                 ? (<Paper className={classNames(classes.popper)}>
@@ -171,7 +174,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const mapStateToProps = state => {
-  return {loggedIn: state.LogInReducer.user_logged_in, error: state.LogInReducer.error};
+  console.log(state);
+  return {loggedIn: state.LogInReducer.user_logged_in, error: state.LogInReducer.error, auth_token: state.LogInReducer.user.auth_token};
 };
 const LogIn = connect(mapStateToProps, mapDispatchToProps)(CLogIn);
 export default withStyles(styles)(LogIn);

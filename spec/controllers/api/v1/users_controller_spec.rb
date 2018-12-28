@@ -91,6 +91,36 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
   end
 
+  describe 'POST #me' do
+    before(:each) do
+      @user = create(:user)
+    end
+
+    context 'when the credentials are correct' do
+      before(:each) do
+        api_authorization_header @user.auth_token
+        post :me
+      end
+      it 'returns the user record corresponding to the given credentials' do
+        user_response = json_response
+        expect(user_response[:first_name]).to eql @user.first_name
+        expect(user_response[:surname]).to eql @user.surname
+      end
+      it { should respond_with 200 }
+    end
+
+    context 'when the credentials are incorrect' do
+      before(:each) do
+        api_authorization_header 'authtokenwrong'
+        get :me
+      end
+      it 'returns a json with an error' do
+        expect(json_response[:error]).to eql 'Authorization Fail'
+      end
+      it { should respond_with 422 }
+    end
+  end
+
   describe 'DELETE #destroy' do
     before(:each) do
       @user = create(:user)

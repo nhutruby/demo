@@ -1,11 +1,10 @@
 import {combineReducers, compose, createStore, applyMiddleware} from "redux";
+import AuthReducer from "../../auth/AuthReducer";
 import sagaMiddleware from "../saga";
 // Define the Reducers that will always be present in the appication
-const defaultReducers = () => {
-  return null;
-};
+
 const staticReducers = {
-  defaultReducers
+  AuthReducer
 };
 
 function createReducer(asyncReducers) {

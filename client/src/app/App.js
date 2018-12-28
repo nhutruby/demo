@@ -1,28 +1,49 @@
 import React, {Suspense, lazy} from "react";
 import {connect} from "react-redux";
+import {BrowserRouter as Router} from "react-router-dom";
+import getCookie from "../common/cookie";
 import {StoreContext} from "../common/context/Store";
+import sagaMiddleware from "../common/saga";
+import AuthSaga from "../auth/AuthSaga";
+import {auth} from "../auth/AuthAction";
 const Home = lazy(() => import ("../home/Home"));
 const Welcome = lazy(() => import ("../welcome/Welcome"));
 class CApp extends React.Component {
+  componentWillMount() {
+    sagaMiddleware.run(AuthSaga, this.context);
+    const authToken = getCookie("auth_token");
+    if (authToken) {
+      this.props.auth(authToken);
+    }
+  }
   render() {
-    const {userSignedIn} = this.props;
+    console.log("CApp");
+    const {auth} = this.props;
     return (<div>
-      <Suspense fallback={<div />}>
-        {
-          userSignedIn
-            ? <Home/>
-            : <Welcome/>
-        }
-      </Suspense>
+      <Router>
+        <Suspense fallback={<div />}>
+          {
+            auth
+              ? <Home/>
+              : <Welcome/>
+          }
+        </Suspense>
+      </Router>
     </div>);
   }
 }
 
 const mapStateToProps = state => {
-  return {userSignedIn: false};
+  return {auth: state.AuthReducer.auth};
 };
+const mapDispatchToProps = dispatch => {
+  return {
+    auth: auth_token => dispatch(auth(auth_token))
+  };
+};
+
 CApp.contextType = StoreContext;
 
-const App = connect(mapStateToProps, {})(CApp);
+const App = connect(mapStateToProps, mapDispatchToProps)(CApp);
 
 export default App;
