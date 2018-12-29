@@ -104,7 +104,6 @@ class CLogIn extends React.Component {
 
   render() {
     if (this.props.loggedIn && this.props.auth_token) {
-      console.log(this.props.auth_token);
       if (typeof document !== "undefined") {
         document.cookie = cookie.serialize("auth_token", this.props.auth_token);
       }
@@ -118,11 +117,10 @@ class CLogIn extends React.Component {
     const id = open
       ? "login-popper"
       : null;
-    console.log(error);
     return (<div className={classes.root}>
       <form noValidate={true} ref={form => (this.formEl = form)} className={classes.container} onSubmit={this.handleSubmit}>
-        <TextField id="email" label="Email" className={classNames(classes.textField, classes.margin)} required={true} type="email" value={this.state.email} name="email" autoComplete="email" variant="outlined" onChange={this.handleChange("email")}/>
-        <TextField id="password" className={classNames(classes.margin, classes.textField)} required={true} value={this.state.password} name="password" autoComplete="password" variant="outlined" type={this.state.showPassword
+        <TextField id="email" label="Email" className={classNames(classes.textField, classes.margin)} required={true} type="email" value={this.state.email} name="email" autoComplete="username" variant="outlined" onChange={this.handleChange("email")}/>
+        <TextField id="password" className={classNames(classes.margin, classes.textField)} required={true} value={this.state.password} name="password" autoComplete="current-password" variant="outlined" type={this.state.showPassword
             ? "text"
             : "password"} label="Password" onChange={this.handleChange("password")} InputProps={{
             endAdornment: (<InputAdornment position="end">
@@ -174,7 +172,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const mapStateToProps = state => {
-  console.log(state);
   return {loggedIn: state.LogInReducer.user_logged_in, error: state.LogInReducer.error, auth_token: state.LogInReducer.user.auth_token};
 };
 const LogIn = connect(mapStateToProps, mapDispatchToProps)(CLogIn);

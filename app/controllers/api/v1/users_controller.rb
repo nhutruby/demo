@@ -21,11 +21,8 @@ module Api
 
       def create
         user = User.new(user_params)
-        puts params
-        puts user_params
-        puts '......'
         if user.save
-          render json: user, status: 201, location: [:api, user]
+          render json: user.serializable_hash(only: %I[email first_name surname]), status: 201, location: [:api, user]
         else
           puts user.errors.messages
           render json: { error: user.errors.messages }, status: 422

@@ -39,19 +39,12 @@ class Welcome extends React.Component {
             <LogIn store={store}/>
           </Paper>
         </Grid>
-        <Grid item={true} xs={8}>
-          <Paper className={classes.paper} elevation={1}>
-            xs=6
-          </Paper>
+        <Grid item={true} xs={7}>
+          <Paper className={classes.paper} elevation={0}/>
         </Grid>
-        <Grid item={true} xs={4}>
+        <Grid item={true} xs={5}>
           <Paper className={classes.paper} elevation={1}>
             <SignUp/>
-          </Paper>
-        </Grid>
-        <Grid item={true} xs={12}>
-          <Paper className={classes.paper} elevation={1}>
-            xs=12
           </Paper>
         </Grid>
       </Grid>

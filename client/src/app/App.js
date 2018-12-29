@@ -12,14 +12,12 @@ class CApp extends React.Component {
   componentWillMount() {
     sagaMiddleware.run(AuthSaga, this.context);
     const authToken = getCookie("auth_token");
-    if (authToken) {
+    if (authToken !== "") {
       this.props.auth(authToken);
     }
   }
   render() {
-    console.log("CApp");
     const {authorization} = this.props;
-    console.log(authorization);
     return (<div>
       <Router>
         <Suspense fallback={<div />}>

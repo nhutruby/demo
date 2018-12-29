@@ -2,8 +2,6 @@ import {call, put, take, fork} from "redux-saga/effects";
 import axios from "axios";
 
 function signOut(authToken) {
-  console.log("signoout");
-  console.log(authToken);
   return axios.request({
     method: "delete",
     url: "/sessions/" + authToken

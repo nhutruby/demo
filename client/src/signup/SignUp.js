@@ -18,6 +18,10 @@ const styles = theme => ({
     display: "flex",
     flexWrap: "wrap"
   },
+  emailConfirmation: {
+    textAlign: "left",
+    color: "blue"
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -33,6 +37,9 @@ const styles = theme => ({
   },
   popper: {
     backgroundColor: "red"
+  },
+  fake: {
+    display: "none"
   }
 });
 class CSignUp extends React.Component {
@@ -55,6 +62,7 @@ class CSignUp extends React.Component {
       openPopperEmail: false,
       openPopperPassword: false,
       openPopperPasswordConfirmation: false,
+      openPopperSubmit: false,
       popperContentFirstName: "",
       popperContentSurname: "",
       popperContentEmail: "",
@@ -75,16 +83,17 @@ class CSignUp extends React.Component {
       popperContentEmail: "",
       popperContentPassword: "",
       popperContentPasswordConfirmation: "",
+      popperContentSubmit: "",
       openPopperFirstName: false,
       openPopperSurname: false,
       openPopperEmail: false,
       openPopperPassword: false,
       openPopperPasswordConfirmation: false
     }));
-    if (formEl.password_confirmation.value !== formEl.password.value) {
+    if (formEl.password_confirmation.value !== formEl.new_password.value) {
       formEl.password_confirmation.setCustomValidity("Passwords don't match");
-    } else{
-      formEl.password_confirmation.setCustomValidity ("");
+    } else {
+      formEl.password_confirmation.setCustomValidity("");
     }
     if (formEl.checkValidity() === false) {
       for (let i = 0; i < formLength; i++) {
@@ -114,33 +123,35 @@ class CSignUp extends React.Component {
                 this.setState(state => ({popperContentPassword: "Password: Must be at least 6 characters long, contain letters and numbers", openPopperPassword: true}));
                 break;
               case "password_confirmation":
+                this.setState(state => ({
+                  popperContentPasswordConfirmation: "Password Confirmation :" + elem.validationMessage,
+                  openPopperPasswordConfirmation: true
+                }));
 
-                  this.setState(state => ({
-                    popperContentPasswordConfirmation: "Password Confirmation :" + elem.validationMessage,
-                    openPopperPasswordConfirmation: true
-                  }));
-                
                 break;
               default:
-                console.log(elem.validationMessage)
             }
           }
         }
       }
-      console.log("false");
       return false;
     } else {
-      console.log("true");
       return true;
     }
   };
   handleSubmit = event => {
     event.preventDefault();
-    console.log("abb");
     this.handleAnchor(event);
     if (this.handleValidate()) {
-      console.log("signup");
-      this.props.signUp({user: {first_name: this.state.first_name, surname: this.state.surname, email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation}});
+      this.props.signUp({
+        user: {
+          first_name: this.state.first_name,
+          surname: this.state.surname,
+          email: this.state.email,
+          password: this.state.password,
+          password_confirmation: this.state.password_confirmation
+        }
+      });
     }
   };
   handleAnchor = event => {
@@ -161,6 +172,9 @@ class CSignUp extends React.Component {
       case "password_confirmation":
         this.setState(state => ({anchorElPasswordConfirmation: currentTarget}));
         break;
+      case "submit":
+        this.setState(state => ({anchorElSubmit: currentTarget}));
+        break;
       default:
     }
   };
@@ -179,14 +193,61 @@ class CSignUp extends React.Component {
 
   render() {
     const {classes} = this.props;
-    const {anchorElFirstName, anchorElSurname, anchorElEmail, anchorElPassword, anchorElPasswordConfirmation} = this.state;
+    const {error, sign_up, first_name, surname, email} = this.props;
+    if (sign_up) {
+      return (<div>
+        <Paper elevation={0}>
+          <Typography variant="h6" component="h4" className={classes.emailConfirmation}>
+            Hi {first_name}
+            {surname}, please confirm your account at {email}
+          </Typography>
+        </Paper>
+      </div>);
+    }
+    const openPopperSubmit = error
+      ? true
+      : this.state.openPopperSubmit;
+    const idPopperSubmit = openPopperSubmit
+      ? "submit_popper"
+      : null;
+    let errorArray = [];
+    if (error) {
+      for (var property in error) {
+        errorArray.push(property.charAt(0).toUpperCase() + property.slice(1) + ": " + error[property]);
+      }
+    }
+    const {
+      anchorElFirstName,
+      anchorElSurname,
+      anchorElEmail,
+      anchorElPassword,
+      anchorElPasswordConfirmation,
+      anchorElSubmit
+    } = this.state;
     const {openPopperFirstName, openPopperSurname, openPopperEmail, openPopperPassword, openPopperPasswordConfirmation} = this.state;
     const {popperContentFirstName, popperContentSurname, popperContentEmail, popperContentPassword, popperContentPasswordConfirmation} = this.state;
+    const idPopperFirstName = openPopperFirstName
+      ? "first_name_popper"
+      : null;
+    const idPopperSurname = openPopperSurname
+      ? "surname_popper"
+      : null;
+    const idPopperEmail = openPopperEmail
+      ? "email_popper"
+      : null;
+    const idPopperPassword = openPopperPassword
+      ? "passwword_popper"
+      : null;
+    const idPopperPasswordConfirmation = openPopperPasswordConfirmation
+      ? "password_confirmation_popper"
+      : null;
     return (<form ref={form => (this.formEl = form)} className={classes.container} noValidate={true} autoComplete="off" onSubmit={this.handleSubmit}>
+      <TextField id="fakeemail" name="email" className={classes.fake} type="email"/>
+      <TextField id="fakepassword" name="password" className={classes.fake} type="password"/>
       <Paper elevation={0}>
         <Typography component="pre">
-          <TextField id="first_name" name="first_name" aria-describedby="first_name_popper" label="First Name" className={classes.textField} margin="normal" required={true} value={this.state.first_name} onChange={this.handleChange("first_name")}/>
-          <Popper id="first_name_popper" open={openPopperFirstName} anchorEl={anchorElFirstName} placement="left">
+          <TextField id="first_name" name="first_name" aria-describedby={idPopperFirstName} label="First Name" className={classes.textField} margin="normal" required={true} value={this.state.first_name} onChange={this.handleChange("first_name")}/>
+          <Popper id={idPopperFirstName} open={openPopperFirstName} anchorEl={anchorElFirstName} placement="left">
             <Paper className={classes.popper}>
               <Typography className={classes.typography}>
                 {popperContentFirstName}
@@ -195,8 +256,8 @@ class CSignUp extends React.Component {
           </Popper>
         </Typography>
         <Typography component="pre">
-          <TextField id="surname" name="surname" aria-describedby="surname_popper" label="Surname" className={classes.textField} margin="normal" required={true} value={this.state.surname} onChange={this.handleChange("surname")}/>
-          <Popper id="surname_popper" open={openPopperSurname} anchorEl={anchorElSurname} placement="left">
+          <TextField id="surname" name="surname" aria-describedby={idPopperSurname} label="Surname" className={classes.textField} margin="normal" required={true} value={this.state.surname} onChange={this.handleChange("surname")}/>
+          <Popper id={idPopperSurname} open={openPopperSurname} anchorEl={anchorElSurname} placement="left">
             <Paper className={classes.popper}>
               <Typography className={classes.typography}>
                 {popperContentSurname}
@@ -205,8 +266,8 @@ class CSignUp extends React.Component {
           </Popper>
         </Typography>
         <Typography component="pre">
-          <TextField id="email" name="email" aria-describedby="email_popper" label="Email" className={classes.textField} type="email" margin="normal" autoComplete="email" required={true} value={this.state.email} onChange={this.handleChange("email")}/>
-          <Popper id="email_popper" open={openPopperEmail} anchorEl={anchorElEmail} placement="left">
+          <TextField id="new_email" name="email" aria-describedby={idPopperEmail} label="Email" className={classes.textField} type="email" margin="normal" required={true} value={this.state.email} autoComplete="nope" onChange={this.handleChange("email")}/>
+          <Popper id={idPopperEmail} open={openPopperEmail} anchorEl={anchorElEmail} placement="left">
             <Paper className={classes.popper}>
               <Typography className={classes.typography}>
                 {popperContentEmail}
@@ -215,7 +276,7 @@ class CSignUp extends React.Component {
           </Popper>
         </Typography>
         <Typography component="pre">
-          <TextField id="password" aria-describedby="password_popper" className={classes.textField} required={true} name="password" margin="normal" value={this.state.password} type={this.state.showPassword
+          <TextField id="new_password" aria-describedby={idPopperPassword} className={classes.textField} required={true} name="password" margin="normal" autoComplete="new-password" value={this.state.password} type={this.state.showPassword
               ? "text"
               : "password"} label="Password" onChange={this.handleChange("password")} InputProps={{
               endAdornment: (<InputAdornment position="end">
@@ -232,7 +293,7 @@ class CSignUp extends React.Component {
             }} inputProps={{
               pattern: "(?=.*[0-9])(?=.*[a-z]).{6,}"
             }}/>
-          <Popper id="password_popper" open={openPopperPassword} anchorEl={anchorElPassword} placement="left">
+          <Popper id={idPopperPassword} open={openPopperPassword} anchorEl={anchorElPassword} placement="left">
             <Paper className={classes.popper}>
               <Typography className={classes.typography}>
                 {popperContentPassword}
@@ -241,8 +302,8 @@ class CSignUp extends React.Component {
           </Popper>
         </Typography>
         <Typography component="pre">
-          <TextField id="password_confirmation" aria-describedby="password_confirmation_popper" name="password_confirmation" label="Password Confirmation" className={classes.textField} type="password" margin="normal" required={true} value={this.state.password_confirmation} onChange={this.handleChange("password_confirmation")}/>
-          <Popper id="password_confirmation_popper" open={openPopperPasswordConfirmation} anchorEl={anchorElPasswordConfirmation} placement="left">
+          <TextField id="password_confirmation" aria-describedby={idPopperPasswordConfirmation} name="password_confirmation" label="Password Confirmation" className={classes.textField} autoComplete="off" type="password" margin="normal" required={true} value={this.state.password_confirmation} onChange={this.handleChange("password_confirmation")}/>
+          <Popper id={idPopperPasswordConfirmation} open={openPopperPasswordConfirmation} anchorEl={anchorElPasswordConfirmation} placement="left">
             <Paper className={classes.popper}>
               <Typography className={classes.typography}>
                 {popperContentPasswordConfirmation}
@@ -250,9 +311,20 @@ class CSignUp extends React.Component {
             </Paper>
           </Popper>
         </Typography>
-        <Button variant="contained" color="primary" className={classes.button} type="submit">
-          Sign Up
-        </Button>
+        <Typography component="pre">
+          <Button variant="contained" aria-describedby={idPopperSubmit} color="primary" className={classes.button} type="submit" name="submit">
+            Sign Up
+          </Button>
+          <Popper id={idPopperSubmit} open={openPopperSubmit} anchorEl={anchorElSubmit} placement="bottom">
+            {
+              errorArray.map((content, index) => (<Paper className={classes.popper} key={index}>
+                <Typography className={classes.typography}>
+                  {content}
+                </Typography>
+              </Paper>))
+            }
+          </Popper>
+        </Typography>
       </Paper>
     </form>);
   }
@@ -266,7 +338,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const mapStateToProps = state => {
-  return {sign_up: state.SignUpReducer.sign_up, error: state.SignUpReducer.error};
+  return {sign_up: state.SignUpReducer.sign_up, error: state.SignUpReducer.error, first_name: state.SignUpReducer.user.first_name, surname: state.SignUpReducer.user.surname, email: state.SignUpReducer.user.email};
 };
 const SignUp = connect(mapStateToProps, mapDispatchToProps)(CSignUp);
 export default withStyles(styles)(SignUp);

@@ -23,6 +23,7 @@ const SignUpReducer = (state, action) => {
       return {
         sign_up: true,
         user: {
+          email: action.user.email,
           first_name: action.user.first_name,
           surname: action.user.surname
         }

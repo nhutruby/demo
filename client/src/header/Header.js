@@ -5,6 +5,7 @@ import getCookie from "../common/cookie";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
+import cookie from "cookie";
 const styles = theme => ({
   root: {
     display: "flex",
@@ -24,17 +25,16 @@ class CHeader extends React.Component {
     this.handleSignOut = this.handleSignOut.bind(this);
   }
   handleSignOut = () => {
-    console.log("and");
-    console.log(this.props.auth_token);
     const authToken = getCookie("auth_token");
     if (authToken) {
       this.props.signOut(authToken);
+      if (typeof document !== "undefined") {
+        document.cookie = cookie.serialize("auth_token", "");
+      }
       window.location.reload();
     }
   };
   render() {
-    console.log("baba");
-    console.log(this.props.auth_token);
     const {first_name, classes} = this.props;
     return (<div className={classes.root}>
       <div>{first_name}</div>
