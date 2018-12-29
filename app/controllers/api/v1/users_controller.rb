@@ -21,10 +21,14 @@ module Api
 
       def create
         user = User.new(user_params)
+        puts params
+        puts user_params
+        puts '......'
         if user.save
           render json: user, status: 201, location: [:api, user]
         else
-          render json: { errors: user.errors }, status: 422
+          puts user.errors.messages
+          render json: { error: user.errors.messages }, status: 422
         end
       end
 

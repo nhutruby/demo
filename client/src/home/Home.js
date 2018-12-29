@@ -29,7 +29,7 @@ class CHome extends React.Component {
     return (<div className={classes.root}>
       <Grid container={true} spacing={24}>
         <Grid item={true} xs={12}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} elevation={1}>
             <Header/>
           </Paper>
         </Grid>
