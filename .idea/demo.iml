@@ -40,7 +40,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.12, ruby-2.5.3-p105 (2)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bson (v4.3.0, ruby-2.5.3-p105 (2)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, ruby-2.5.3-p105 (2)) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.16.6, ruby-2.5.3-p105 (2)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.17.3, ruby-2.5.3-p105 (2)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v10.0.2, ruby-2.5.3-p105 (2)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.2, ruby-2.5.3-p105 (2)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.1.4, ruby-2.5.3-p105 (2)) [gem]" level="application" />
